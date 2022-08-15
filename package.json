@@ -1,18 +1,17 @@
 {
-  "name": "@uniswap/v2-core",
-  "description": "🎛 Core contracts for the UniswapV2 protocol",
+  "name": "@gton-capital/ogs-core",
+  "description": "🎛 Core contracts for the OGS protocol",
   "version": "1.0.1",
-  "homepage": "https://uniswap.org",
+  "homepage": "https://gton.capital",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Uniswap/uniswap-v2-core"
+    "url": "https://github.com/GTON-capital/ogs-core"
   },
   "keywords": [
-    "uniswap",
+    "ogs",
+    "gton",
     "ethereum",
-    "v2",
-    "core",
-    "uniswap-v2"
+    "core"
   ],
   "files": [
     "contracts",
