@@ -1,8 +1,13 @@
 import chai, { expect } from 'chai'
 import { Contract } from 'ethers'
-import { MaxUint256 } from 'ethers/constants'
-import { bigNumberify, hexlify, keccak256, defaultAbiCoder, toUtf8Bytes } from 'ethers/utils'
-import { solidity, MockProvider, deployContract } from 'ethereum-waffle'
+import { MaxUint256 } from '@ethersproject/constants'
+import { BigNumber } from '@ethersproject/bignumber'
+import { defaultAbiCoder } from '@ethersproject/abi'
+import { hexlify } from '@ethersproject/bytes'
+import { keccak256 } from '@ethersproject/keccak256'
+import { toUtf8Bytes } from '@ethersproject/strings'
+import { solidity, deployContract } from 'ethereum-waffle'
+import { provider, chainId } from './shared/config'
 import { ecsign } from 'ethereumjs-util'
 
 import { expandTo18Decimals, getApprovalDigest } from './shared/utilities'
@@ -15,11 +20,6 @@ const TOTAL_SUPPLY = expandTo18Decimals(10000)
 const TEST_AMOUNT = expandTo18Decimals(10)
 
 describe('OGSERC20', () => {
-  const provider = new MockProvider({
-    hardfork: 'istanbul',
-    mnemonic: 'horn horn horn horn horn horn horn horn horn horn horn horn',
-    gasLimit: 9999999
-  })
   const [wallet, other] = provider.getWallets()
 
   let token: Contract
@@ -44,7 +44,7 @@ describe('OGSERC20', () => {
             ),
             keccak256(toUtf8Bytes(name)),
             keccak256(toUtf8Bytes('1')),
-            1,
+            chainId,
             token.address
           ]
         )
@@ -111,6 +111,6 @@ describe('OGSERC20', () => {
       .to.emit(token, 'Approval')
       .withArgs(wallet.address, other.address, TEST_AMOUNT)
     expect(await token.allowance(wallet.address, other.address)).to.eq(TEST_AMOUNT)
-    expect(await token.nonces(wallet.address)).to.eq(bigNumberify(1))
+    expect(await token.nonces(wallet.address)).to.eq(BigNumber.from(1))
   })
 })
