@@ -21,11 +21,16 @@
     "node": ">=10"
   },
   "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "2.0.1",
+    "@nomiclabs/hardhat-etherscan": "2.1.1",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
     "@types/chai": "^4.2.6",
     "@types/mocha": "^5.2.7",
     "chai": "^4.2.0",
+    "dotenv": "6.0.0",
     "ethereum-waffle": "^2.4.1",
     "ethereumjs-util": "^6.2.0",
+    "hardhat": "2.0.10",
     "mocha": "^6.2.2",
     "prettier": "^1.19.1",
     "rimraf": "^3.0.0",
@@ -41,7 +46,10 @@
     "compile": "waffle .waffle.json",
     "pretest": "yarn compile",
     "test": "mocha",
-    "prepublishOnly": "yarn test"
+    "prepublishOnly": "yarn test",
+    "deploy:goerli": "hardhat run --network goerli ./scripts/deploy-script.js",
+    "deploy:gton": "hardhat run --network gtonTestnet ./scripts/deploy-script.js",
+    "deploy:ropsten": "hardhat run --network ropsten ./scripts/deploy-script.js"
   },
   "license": "GPL-3.0-or-later"
 }
