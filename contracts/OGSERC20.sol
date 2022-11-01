@@ -6,8 +6,8 @@ import './libraries/SafeMath.sol';
 contract OGSERC20 is IOGSERC20 {
     using SafeMath for uint;
 
-    string public constant name = 'OGS';
-    string public constant symbol = 'OGS';
+    string public constant name = 'OGS LP';
+    string public constant symbol = 'OGS-LP';
     uint8 public constant decimals = 18;
     uint  public totalSupply;
     mapping(address => uint) public balanceOf;
