@@ -101,9 +101,7 @@ describe('OGSPair', () => {
       const [outputAmount, token0Amount, token1Amount, inputAmount] = optimisticTestCase
       await addLiquidity(token0Amount, token1Amount)
       await token0.transfer(pair.address, inputAmount)
-      await expect(pair.swap(outputAmount.add(1), 0, wallet.address, '0x', overrides)).to.be.revertedWith(
-        'OGS: K'
-      )
+      await expect(pair.swap(outputAmount.add(1), 0, wallet.address, '0x', overrides)).to.be.revertedWith('OGS: K')
       await pair.swap(outputAmount, 0, wallet.address, '0x', overrides)
     })
   })
@@ -273,12 +271,13 @@ describe('OGSPair', () => {
     const expectedLiquidity = expandTo18Decimals(1000)
     await pair.transfer(pair.address, expectedLiquidity.sub(MINIMUM_LIQUIDITY))
     await pair.burn(wallet.address, overrides)
-    expect(await pair.totalSupply()).to.eq(MINIMUM_LIQUIDITY.add('249750499251388'))
-    expect(await pair.balanceOf(other.address)).to.eq('249750499251388')
+    expect(await pair.totalSupply()).to.eq(MINIMUM_LIQUIDITY.add('1498504866770022'))
+    expect(await pair.balanceOf(other.address)).to.eq('1498504866770022')
 
     // using 1000 here instead of the symbolic MINIMUM_LIQUIDITY because the amounts only happen to be equal...
     // ...because the initial liquidity amounts were equal
-    expect(await token0.balanceOf(pair.address)).to.eq(bigNumberify(1000).add('249501683697445'))
-    expect(await token1.balanceOf(pair.address)).to.eq(bigNumberify(1000).add('250000187312969'))
+
+    expect(await token0.balanceOf(pair.address)).to.eq(bigNumberify(1000).add('1497010102184673'))
+    expect(await token1.balanceOf(pair.address)).to.eq(bigNumberify(1000).add('1500001123877809'))
   })
 })
