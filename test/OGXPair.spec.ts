@@ -15,7 +15,7 @@ const overrides = {
   gasLimit: 9999999
 }
 
-describe('OGSPair', () => {
+describe('OGXPair', () => {
   const provider = new MockProvider({
     hardfork: 'istanbul',
     mnemonic: 'horn horn horn horn horn horn horn horn horn horn horn horn',
@@ -84,7 +84,7 @@ describe('OGSPair', () => {
       await addLiquidity(token0Amount, token1Amount)
       await token0.transfer(pair.address, swapAmount)
       await expect(pair.swap(0, expectedOutputAmount.add(1), wallet.address, '0x', overrides)).to.be.revertedWith(
-        'OGS: K'
+        'OGX: K'
       )
       await pair.swap(0, expectedOutputAmount, wallet.address, '0x', overrides)
     })
@@ -101,7 +101,7 @@ describe('OGSPair', () => {
       const [outputAmount, token0Amount, token1Amount, inputAmount] = optimisticTestCase
       await addLiquidity(token0Amount, token1Amount)
       await token0.transfer(pair.address, inputAmount)
-      await expect(pair.swap(outputAmount.add(1), 0, wallet.address, '0x', overrides)).to.be.revertedWith('OGS: K')
+      await expect(pair.swap(outputAmount.add(1), 0, wallet.address, '0x', overrides)).to.be.revertedWith('OGX: K')
       await pair.swap(outputAmount, 0, wallet.address, '0x', overrides)
     })
   })
@@ -276,7 +276,6 @@ describe('OGSPair', () => {
 
     // using 1000 here instead of the symbolic MINIMUM_LIQUIDITY because the amounts only happen to be equal...
     // ...because the initial liquidity amounts were equal
-
     expect(await token0.balanceOf(pair.address)).to.eq(bigNumberify(1000).add('1497010102184673'))
     expect(await token1.balanceOf(pair.address)).to.eq(bigNumberify(1000).add('1500001123877809'))
   })

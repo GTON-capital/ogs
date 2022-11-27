@@ -1,6 +1,6 @@
-# OGC core contacts
+# OGX core contacts
 
-OGS is a fork of [uniswap](https://uniswap.org/docs).
+OGX is a fork of [uniswap](https://uniswap.org/docs).
 
 # Local Development
 

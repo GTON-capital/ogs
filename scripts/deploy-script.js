@@ -7,7 +7,7 @@ async function deploy() {
   let deployerAddress = deployer.address
 
   //Deploy Factory
-  const factory = await ethers.getContractFactory('OGSFactory')
+  const factory = await ethers.getContractFactory('OGXFactory')
   const factoryInstance = await factory.deploy(deployerAddress)
   await factoryInstance.deployed()
   const factoryAddress = factoryInstance.address

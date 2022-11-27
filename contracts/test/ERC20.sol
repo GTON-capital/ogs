@@ -1,8 +1,8 @@
 pragma solidity =0.5.16;
 
-import '../OGSERC20.sol';
+import '../OGXERC20.sol';
 
-contract ERC20 is OGSERC20 {
+contract ERC20 is OGXERC20 {
     constructor(uint _totalSupply) public {
         _mint(msg.sender, _totalSupply);
     }

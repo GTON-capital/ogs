@@ -5,8 +5,8 @@ import { deployContract } from 'ethereum-waffle'
 import { expandTo18Decimals } from './utilities'
 
 import ERC20 from '../../build/ERC20.json'
-import OGSFactory from '../../build/OGSFactory.json'
-import OGSPair from '../../build/OGSPair.json'
+import OGXFactory from '../../build/OGXFactory.json'
+import OGXPair from '../../build/OGXPair.json'
 
 interface FactoryFixture {
   factory: Contract
@@ -17,7 +17,7 @@ const overrides = {
 }
 
 export async function factoryFixture(_: Web3Provider, [wallet]: Wallet[]): Promise<FactoryFixture> {
-  const factory = await deployContract(wallet, OGSFactory, [wallet.address], overrides)
+  const factory = await deployContract(wallet, OGXFactory, [wallet.address], overrides)
   return { factory }
 }
 
@@ -35,7 +35,7 @@ export async function pairFixture(provider: Web3Provider, [wallet]: Wallet[]): P
 
   await factory.createPair(tokenA.address, tokenB.address, overrides)
   const pairAddress = await factory.getPair(tokenA.address, tokenB.address)
-  const pair = new Contract(pairAddress, JSON.stringify(OGSPair.abi), provider).connect(wallet)
+  const pair = new Contract(pairAddress, JSON.stringify(OGXPair.abi), provider).connect(wallet)
 
   const token0Address = (await pair.token0()).address
   const token0 = tokenA.address === token0Address ? tokenA : tokenB
