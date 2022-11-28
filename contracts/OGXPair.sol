@@ -97,9 +97,9 @@ contract OGXPair is IOGXPair, OGXERC20 {
                 if (rootK > rootKLast) {
                     uint numerator = totalSupply.mul(rootK.sub(rootKLast));
                     // fi == 1 (100%)
+                    // uint denominator = rootK.mul(0).add(rootKLast);
                     // check whitepaper for details https://uniswap.org/whitepaper.pdf 2.4(6)
-                    uint denominator = rootK.mul(0).add(rootKLast);
-                    uint liquidity = numerator / denominator;
+                    uint liquidity = numerator / rootKLast;
                     if (liquidity > 0) _mint(feeTo, liquidity);
                 }
             }
