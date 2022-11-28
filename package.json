@@ -1,6 +1,6 @@
 {
   "name": "@gton-capital/ogs-core",
-  "description": "🎛 Core contracts for the OGS protocol",
+  "description": "🎛 Core contracts for the OGX protocol",
   "version": "1.0.1",
   "homepage": "https://gton.capital",
   "repository": {
@@ -9,6 +9,7 @@
   },
   "keywords": [
     "ogs",
+    "ogx",
     "gton",
     "ethereum",
     "core"
